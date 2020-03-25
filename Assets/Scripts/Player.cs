@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
     public int maxHealth = 100;
     public int currentHealth;
     public Healthbar healthbar;
-    
+    public UnityEvent OnHealthChange;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int damage) 
     {
+        OnHealthChange.Invoke();
         currentHealth -= damage;
         healthbar.SetHealth(currentHealth);
     }

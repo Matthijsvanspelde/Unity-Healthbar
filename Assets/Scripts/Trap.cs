@@ -12,14 +12,11 @@ public class Trap : MonoBehaviour
         audioSource.GetComponent<AudioSource>();
     }
 
-    private void OnCollisionEnter(UnityEngine.Collision collision)
-    {
-        if (collision.collider.name == "Player")
-        {
-            Debug.Log("Hit trap");
-            collision.gameObject.GetComponent<Player>().TakeDamage(hitPoints);
-            audioSource.Play();
-        }
 
+    private void OnTriggerEnter(Collider collider)
+    {
+        Debug.Log("Hit trap");
+        collider.gameObject.GetComponent<Player>().TakeDamage(hitPoints);
+        audioSource.Play();
     }
 }
