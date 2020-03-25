@@ -26,9 +26,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage) 
+    private void OnEnable()
     {
         OnHealthChange.Invoke();
+    }
+
+    public void TakeDamage(int damage) 
+    {
         currentHealth -= damage;
         healthbar.SetHealth(currentHealth);
     }
