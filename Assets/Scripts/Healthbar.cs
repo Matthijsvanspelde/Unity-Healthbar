@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Healthbar : MonoBehaviour
@@ -8,17 +6,25 @@ public class Healthbar : MonoBehaviour
     public Slider slider;
     public Gradient gradient;
     public Image fill;
+    private Player player;
 
-    public void SetMaxHealth(int health) 
+    private void Start()
     {
-        slider.maxValue = health;
-        slider.value = health;
+
+        player = GameObject.Find("Player").GetComponent<Player>();
+        SetMaxHealth();
+    }
+
+    public void SetMaxHealth() 
+    {
+        slider.maxValue = player.maxHealth;
+        slider.value = slider.maxValue;
         fill.color = gradient.Evaluate(1f);
     }
 
-    public void SetHealth(int health) 
+    public void SetHealth() 
     {
-        slider.value = health;
+        slider.value = player.currentHealth;
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }
 }
